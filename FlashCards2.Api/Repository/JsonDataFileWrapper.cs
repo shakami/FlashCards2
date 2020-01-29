@@ -1,7 +1,7 @@
-﻿using FlashCards.Entities;
+﻿using FlashCards.Api.Entities;
 using System.Collections.Generic;
 
-namespace FlashCards.Repository
+namespace FlashCards.Api.Repository
 {
     public class JsonDataFileWrapper
     {

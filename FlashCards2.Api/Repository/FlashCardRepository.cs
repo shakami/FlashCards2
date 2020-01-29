@@ -1,11 +1,11 @@
-﻿using FlashCards.Entities;
+﻿using FlashCards.Api.Entities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace FlashCards.Repository
+namespace FlashCards.Api.Repository
 {
     public class FlashCardRepository : IFlashCardRepository
     {
@@ -13,7 +13,17 @@ namespace FlashCards.Repository
 
         public Deck AddDeck(Deck newDeck)
         {
+            if (newDeck is null)
+            {
+                throw new ArgumentNullException(nameof(newDeck));
+            }
+
             newDeck.Id = _context.GetNewDeckId();
+            foreach (var card in newDeck.Cards)
+            {
+                card.Id = _context.GetNewFlashCardId();
+                card.DeckId = newDeck.Id;
+            }
             _context.Decks.Add(newDeck);
             return newDeck;
         }
@@ -30,16 +40,27 @@ namespace FlashCards.Repository
 
         public void DeleteDeck(Deck deck)
         {
+            if (deck is null)
+            {
+                throw new ArgumentNullException(nameof(deck));
+            }
+
             _context.Decks.Remove(deck);
         }
 
         public Card AddCard(Card newCard, int deckId)
         {
+            if (newCard is null)
+            {
+                throw new ArgumentNullException(nameof(newCard));
+            }
+
             var deck = GetDeck(deckId);
             if (deck == null)
             {
                 return null;
             }
+
             newCard.DeckId = deckId;
             newCard.Id = _context.GetNewFlashCardId();
             deck.Add(newCard);
@@ -60,39 +81,19 @@ namespace FlashCards.Repository
 
         public Card UpdateCard(Card updatedCard)
         {
-            var oldCard = GetCard(updatedCard.Id);
-            if (oldCard == null)
-            {
-                return null;
-            }
-
-            var deck = GetDeck(oldCard.DeckId);
-            if (deck == null)
-            {
-                return null;
-            }
-
-            if (oldCard.DeckId == updatedCard.DeckId)
-            {
-                oldCard.Title = updatedCard.Title;
-                oldCard.Description = updatedCard.Description;
-            }
-            else
-            {
-                deck.Remove(oldCard);
-                deck = GetDeck(updatedCard.DeckId);
-                deck.Add(updatedCard);
-            }
+            // no code needed
             return updatedCard;
         }
 
         public void DeleteCard(Card cardToDelete)
         {
-            if (cardToDelete != null)
+            if (cardToDelete is null)
             {
-                var deck = GetDeck(cardToDelete.DeckId);
-                deck.Remove(cardToDelete);
+                throw new ArgumentNullException(nameof(cardToDelete));
             }
+
+            var deck = GetDeck(cardToDelete.DeckId);
+            deck.Remove(cardToDelete);
         }
 
         public bool DeckExists(int deckId)

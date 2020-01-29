@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using FlashCards.Models;
-using FlashCards.Repository;
+using FlashCards.Api.Models;
+using FlashCards.Api.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,26 +29,28 @@ namespace FlashCards.Api.Controllers
         [HttpOptions]
         public IActionResult GetDecksOptions()
         {
-            Response.Headers.Add("Allow", "GET,OPTIONS,POST");
+            Response.Headers.Add("Allow", "GET,OPTIONS,HEAD,POST");
             return Ok();
         }
 
         [HttpOptions("{deckId}")]
         public IActionResult GetDeckOptions()
         {
-            Response.Headers.Add("Allow", "GET,OPTIONS,DELETE");
+            Response.Headers.Add("Allow", "GET,OPTIONS,HEAD,DELETE");
             return Ok();
         }
 
         [HttpGet]
-        public IActionResult GetDecks()
+        [HttpHead]
+        public ActionResult<IEnumerable<DeckDto>> GetDecks()
         {
             var decksFromRepo = _flashCardRepository.GetDecks();
             var decksToReturn = _mapper.Map<IEnumerable<DeckDto>>(decksFromRepo);
             return Ok(decksToReturn);
         }
 
-        [HttpGet("{deckId}", Name = "GetDeck")]
+        [HttpGet("{deckId}", Name = nameof(GetDeck))]
+        [HttpHead("{deckId}")]
         public ActionResult<DeckDto> GetDeck(int deckId)
         {
             var deckFromRepo = _flashCardRepository.GetDeck(deckId);
@@ -62,7 +64,7 @@ namespace FlashCards.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateDeck(DeckForCreationDto deck)
+        public ActionResult<DeckDto> CreateDeck(DeckForCreationDto deck)
         {
             var deckEntity = _mapper.Map<Entities.Deck>(deck);
 

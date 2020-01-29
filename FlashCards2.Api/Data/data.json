@@ -1,6 +1,6 @@
 {
-  "_deckId": 15,
-  "_cardId": 0,
+  "_deckId": 12,
+  "_cardId": 30,
   "Decks": [
     {
       "Cards": [
@@ -62,52 +62,47 @@
           "DeckId": 8,
           "Id": 17,
           "Title": "hydrate",
-          "Description": "a compound that contains water of hydration.\r\n"
+          "Description": "a compound that contains water of hydration."
         },
         {
           "DeckId": 8,
           "Id": 18,
-          "Title": "molar volume\t",
-          "Description": "the amount of space a mole of a substance takes up.\r\n"
+          "Title": "molar volume",
+          "Description": "the amount of space a mole of a substance takes up."
         },
         {
           "DeckId": 8,
           "Id": 19,
           "Title": "catalyst",
-          "Description": "A substance that increases the rate of reaction by lowering the activation-energy barrier; the catalyst is not used up in the reaction.\r\n"
+          "Description": "A substance that increases the rate of reaction by lowering the activation-energy barrier; the catalyst is not used up in the reaction."
         },
         {
           "DeckId": 8,
           "Id": 20,
           "Title": "reactant",
-          "Description": "a substance present at the start of a reaction\r\n"
+          "Description": "a substance present at the start of a reaction"
         },
         {
           "DeckId": 8,
           "Id": 21,
           "Title": "crystal",
-          "Description": "particles are arranged in an orderly, repeating, three dimensional pattern called a crystal lattice\r\n"
+          "Description": "particles are arranged in an orderly, repeating, three dimensional pattern called a crystal lattice"
         },
         {
           "DeckId": 8,
           "Id": 22,
           "Title": "amphoteric",
-          "Description": "substance that can act as both an acid and a base\r\n"
+          "Description": "substance that can act as both an acid and a base"
         },
         {
           "DeckId": 8,
           "Id": 16,
           "Title": "molarity",
-          "Description": "The number of moles of a solute dissolved in one liter of a solution.\r\n"
+          "Description": "The number of moles of a solute dissolved in one liter of a solution."
         }
       ],
       "Id": 8,
       "Name": "chemistry"
-    },
-    {
-      "Cards": [],
-      "Id": 14,
-      "Name": "test"
     }
   ]
 }
