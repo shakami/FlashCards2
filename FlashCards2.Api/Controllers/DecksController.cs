@@ -7,6 +7,7 @@ using FlashCards.Api.Models;
 using FlashCards.Api.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 
 namespace FlashCards.Api.Controllers
 {
@@ -40,19 +41,55 @@ namespace FlashCards.Api.Controllers
             return Ok();
         }
 
-        [HttpGet]
+        [HttpGet(Name = nameof(GetDecks))]
         [HttpHead]
-        public ActionResult<IEnumerable<DeckDto>> GetDecks()
+        public ActionResult<IEnumerable<DeckDto>> GetDecks(
+            [FromHeader(Name = "Accept")] string mediaType)
         {
+            if (!MediaTypeHeaderValue.TryParse(mediaType,
+                    out MediaTypeHeaderValue parsedMediaType))
+            {
+                return BadRequest();
+            }
+
+            var includeLinks = parsedMediaType.SubTypeWithoutSuffix
+                    .EndsWith("hateoas", StringComparison.InvariantCultureIgnoreCase);
+
             var decksFromRepo = _flashCardRepository.GetDecks();
             var decksToReturn = _mapper.Map<IEnumerable<DeckDto>>(decksFromRepo);
-            return Ok(decksToReturn);
+
+            if (!includeLinks)
+            {
+                return Ok(decksToReturn);
+            }
+
+            var decksWithLinks = decksToReturn.Select(deck =>
+            {
+                var links = CreateLinksForDeck(deck.Id);
+                return new DeckDtoWithLinks(deck, links);
+            });
+
+            return Ok(new
+            {
+                value = decksWithLinks,
+                links = CreateLinksForDecks()
+            });
         }
 
         [HttpGet("{deckId}", Name = nameof(GetDeck))]
         [HttpHead("{deckId}")]
-        public ActionResult<DeckDto> GetDeck(int deckId)
+        public ActionResult<DeckDto> GetDeck(int deckId,
+            [FromHeader(Name = "Accept")] string mediaType)
         {
+            if (!MediaTypeHeaderValue.TryParse(mediaType,
+                    out MediaTypeHeaderValue parsedMediaType))
+            {
+                return BadRequest();
+            }
+
+            var includeLinks = parsedMediaType.SubTypeWithoutSuffix
+                    .EndsWith("hateoas", StringComparison.InvariantCultureIgnoreCase);
+
             var deckFromRepo = _flashCardRepository.GetDeck(deckId);
             if (deckFromRepo == null)
             {
@@ -60,12 +97,31 @@ namespace FlashCards.Api.Controllers
             }
 
             var deckToReturn = _mapper.Map<DeckDto>(deckFromRepo);
-            return Ok(deckToReturn);
+
+            if (!includeLinks)
+            {
+                return Ok(deckToReturn);
+            }
+
+            var links = CreateLinksForDeck(deckId);
+            var deckWithLinks = new DeckDtoWithLinks(deckToReturn, links);
+
+            return Ok(deckWithLinks);
         }
 
-        [HttpPost]
-        public ActionResult<DeckDto> CreateDeck(DeckForCreationDto deck)
+        [HttpPost(Name = nameof(CreateDeck))]
+        public ActionResult<DeckDto> CreateDeck(DeckForCreationDto deck,
+            [FromHeader(Name = "Accept")] string mediaType)
         {
+            if (!MediaTypeHeaderValue.TryParse(mediaType,
+                    out MediaTypeHeaderValue parsedMediaType))
+            {
+                return BadRequest();
+            }
+
+            var includeLinks = parsedMediaType.SubTypeWithoutSuffix
+                    .EndsWith("hateoas", StringComparison.InvariantCultureIgnoreCase);
+
             var deckEntity = _mapper.Map<Entities.Deck>(deck);
 
             _flashCardRepository.AddDeck(deckEntity);
@@ -73,10 +129,22 @@ namespace FlashCards.Api.Controllers
 
             var deckToReturn = _mapper.Map<DeckDto>(deckEntity);
 
-            return CreatedAtRoute(nameof(GetDeck), new { deckId = deckToReturn.Id }, deckToReturn);
+            if (!includeLinks)
+            {
+                return CreatedAtRoute(nameof(GetDeck),
+                                        new { deckId = deckToReturn.Id },
+                                        deckToReturn);
+            }
+
+            var links = CreateLinksForDeck(deckToReturn.Id);
+            var deckWithLinks = new DeckDtoWithLinks(deckToReturn, links);
+
+            return CreatedAtRoute(nameof(GetDeck),
+                                    new { deckId = deckToReturn.Id },
+                                    deckWithLinks);
         }
 
-        [HttpDelete("{deckId}")]
+        [HttpDelete("{deckId}", Name = nameof(DeleteDeck))]
         public IActionResult DeleteDeck(int deckId)
         {
             var deckFromRepo = _flashCardRepository.GetDeck(deckId);
@@ -90,6 +158,64 @@ namespace FlashCards.Api.Controllers
             _flashCardRepository.Save();
 
             return NoContent();
+        }
+
+        private IEnumerable<LinkDto> CreateLinksForDeck(int deckId)
+        {
+            var links = new List<LinkDto>
+            {
+                new LinkDto
+                (
+                    href: Url.Link(nameof(GetDeck), new { deckId }),
+                    rel: "self",
+                    method: HttpMethods.Get
+                ),
+
+                new LinkDto
+                (
+                    href: Url.Link(nameof(DeleteDeck), new { deckId }),
+                    rel: "delete_deck",
+                    method: HttpMethods.Delete
+                ),
+
+                new LinkDto
+                (
+                    href: Url.Link(nameof(CardsController.CreateCardInDeck), new { deckId }),
+                    rel: "create_card_for_deck",
+                    method: HttpMethods.Post
+                ),
+
+                new LinkDto
+                (
+                    href: Url.Link(nameof(CardsController.GetCardsInDeck), new { deckId }),
+                    rel: "cards",
+                    method: HttpMethods.Get
+                )
+            };
+
+            return links;
+        }
+
+        private IEnumerable<LinkDto> CreateLinksForDecks()
+        {
+            var links = new List<LinkDto>
+            {
+                new LinkDto
+                (
+                    href: Url.Link(nameof(GetDecks), new { }),
+                    rel: "self",
+                    method: HttpMethods.Get
+                ),
+
+                new LinkDto
+                (
+                    href: Url.Link(nameof(CreateDeck), new { }),
+                    rel: "create_deck",
+                    method: HttpMethods.Post
+                )
+            };
+
+            return links;
         }
     }
 }
