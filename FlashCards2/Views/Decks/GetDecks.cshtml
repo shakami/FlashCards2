@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Decks";
+}
+
+<script>
+    class Deck {
+        constructor(id, name) {
+            this.id = id;
+            this.name = name;
+        }
+    }
+
+    function parseJsonToDeck(data) {
+        let id = 0;
+        let name = "";
+
+        $.each(data, function (key, val) {
+            if (key === "id") {
+                id = val;
+            }
+            else if (key === "name") {
+                name = val;
+            }
+        });
+
+        var deck = new Deck(id, name);
+        return deck;
+    }
+
+
+    $(document).ready(function () {
+        $.getJSON('https://localhost:44375/api/decks', function (data) {
+            $.each(data, function (i, obj) {
+                var deck = parseJsonToDeck(obj);
+                var card = $(".card-deck > div:first-child").clone();
+                var linkOnCard = card.find("a");
+                linkOnCard.text(deck.name);
+                linkOnCard.attr("href", "Decks/" + deck.id + "/Cards");
+                card.appendTo(".card-deck");
+            });
+            $(".card-deck > div:first-child").remove();
+            $(".card-deck > div:first-child").appendTo(".card-deck");
+        });
+    });
+</script>
+
+<h1>Decks</h1>
+<br />
+
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="card-deck">
+            <div class="card text-white bg-info mb-3" style="min-height: 18rem; min-width: 15rem; max-width: 15rem;">
+                <div class="card-header" style="height: 3rem;"></div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a class="text-white">
+                        </a>
+                    </h5>
+                </div>
+            </div>
+
+            <div class="card text-white bg-dark mb-3" style="min-height: 18rem; min-width: 15rem; max-width: 15rem;">
+                <div class="card-header" style="height: 3rem;"></div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a class="card-text text-success" asp-action="CreateDeck">New Deck</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "Default";
+}
+
+<div class="nav-item dropdown text-light">
+    <a class="nav-link dropdown-toggle btn btn-dark" role="button" id="navbarDropdown" data-toggle="dropdown">Decks</a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        @foreach (var deck in Model)
+        {
+            <a class="dropdown-item"
+               asp-action="GetCards" asp-controller="Cards" asp-route-deckId="@deck.Id">@deck.Name</a>
+        }
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item text-success"
+           asp-action="CreateDeck" asp-controller="Decks">New Deck</a>
+    </div>
+</div>
