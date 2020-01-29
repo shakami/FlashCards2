@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace FlashCards.Api.Controllers
 {
     [ApiController]
-    public class DecksController : Controller
+    [Route("api/decks")]
+    public class DecksController : ControllerBase
     {
         private readonly IFlashCardRepository _flashCardRepository;
         private readonly IMapper _mapper;
@@ -25,21 +26,21 @@ namespace FlashCards.Api.Controllers
                 throw new ArgumentNullException(nameof(mapper));
         }
 
-        [HttpOptions("api/decks")]
+        [HttpOptions]
         public IActionResult GetDecksOptions()
         {
             Response.Headers.Add("Allow", "GET,OPTIONS,POST");
             return Ok();
         }
 
-        [HttpOptions("api/decks/{deckId}")]
+        [HttpOptions("{deckId}")]
         public IActionResult GetDeckOptions()
         {
             Response.Headers.Add("Allow", "GET,OPTIONS,DELETE");
             return Ok();
         }
 
-        [HttpGet("api/decks")]
+        [HttpGet]
         public IActionResult GetDecks()
         {
             var decksFromRepo = _flashCardRepository.GetDecks();
@@ -47,7 +48,7 @@ namespace FlashCards.Api.Controllers
             return Ok(decksToReturn);
         }
 
-        [HttpGet("api/decks/{deckId}", Name = "GetDeck")]
+        [HttpGet("{deckId}", Name = "GetDeck")]
         public ActionResult<DeckDto> GetDeck(int deckId)
         {
             var deckFromRepo = _flashCardRepository.GetDeck(deckId);
@@ -60,7 +61,7 @@ namespace FlashCards.Api.Controllers
             return Ok(deckToReturn);
         }
 
-        [HttpPost("api/decks")]
+        [HttpPost]
         public IActionResult CreateDeck(DeckForCreationDto deck)
         {
             var deckEntity = _mapper.Map<Entities.Deck>(deck);
@@ -73,7 +74,7 @@ namespace FlashCards.Api.Controllers
             return CreatedAtRoute(nameof(GetDeck), new { deckId = deckToReturn.Id }, deckToReturn);
         }
 
-        [HttpDelete("api/decks/{deckId}")]
+        [HttpDelete("{deckId}")]
         public IActionResult DeleteDeck(int deckId)
         {
             var deckFromRepo = _flashCardRepository.GetDeck(deckId);

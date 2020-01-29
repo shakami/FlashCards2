@@ -29,7 +29,11 @@ namespace FlashCards.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(setupAction =>
+            {
+                setupAction.ReturnHttpNotAcceptable = true;
+            }).AddXmlDataContractSerializerFormatters();
+
             services.AddSingleton<IFlashCardRepository, FlashCardRepository>();
             services.AddAutoMapper(System.AppDomain.CurrentDomain.GetAssemblies());
             services.AddCors(options =>
@@ -37,7 +41,7 @@ namespace FlashCards.Api
                 options.AddPolicy(TrustedFlashCardAppCorsPolicy,
                     builder =>
                     {
-                        builder.WithOrigins("https://localhost:44364");
+                        builder.WithOrigins("http://localhost:64123");
                     });
             });
         }

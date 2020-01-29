@@ -29,7 +29,7 @@
 
 
     $(document).ready(function () {
-        $.getJSON('https://localhost:44375/api/decks', function (data) {
+        $.getJSON('https://localhost:44123/api/decks', function (data) {
             $.each(data, function (i, obj) {
                 var deck = parseJsonToDeck(obj);
                 var card = $(".card-deck > div:first-child").clone();
