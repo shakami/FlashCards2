@@ -41,7 +41,6 @@ namespace FlashCards.Api.Controllers
             return Ok();
         }
 
-
         [HttpGet(Name = nameof(GetCardsInDeck))]
         [HttpHead]
         public ActionResult<IEnumerable<CardDto>> GetCardsInDeck(int deckId,

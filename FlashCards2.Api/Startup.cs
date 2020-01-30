@@ -80,6 +80,9 @@ namespace FlashCards.Api
                         builder.WithOrigins("http://localhost:64123");
                     });
             });
+
+            services.AddResponseCaching();
+            services.AddHttpCacheHeaders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -103,6 +106,10 @@ namespace FlashCards.Api
             }
 
             app.UseCors(TrustedFlashCardAppCorsPolicy);
+
+            app.UseResponseCaching();
+            
+            app.UseHttpCacheHeaders();
 
             app.UseHttpsRedirection();
 
