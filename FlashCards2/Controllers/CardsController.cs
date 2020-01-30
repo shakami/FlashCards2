@@ -28,20 +28,22 @@ namespace FlashCards.Controllers
             //return View(model);
         }
 
-        //[HttpGet("CreateFlashCard")]
-        //public IActionResult CreateFlashCard(int deckId)
-        //{
+        [HttpGet("New")]
+        public IActionResult CreateFlashCard(int deckId)
+        {
+            return View();
         //    var model = new FlashCardEditModel
         //    {
         //        Decks = _flashCardData.GetDecks(),
         //        FlashCard = new Card { DeckId = deckId }
         //    };
         //    return View(model);
-        //}
+        }
 
-        //[HttpPost("CreateFlashCard")]
-        //public IActionResult CreateFlashCard(FlashCardEditModel model)
-        //{
+        [HttpPost("New")]
+        public IActionResult CreateFlashCard(FlashCardEditModel model)
+        {
+            return View();
         //    if (!ModelState.IsValid)
         //    {
         //        return RedirectToAction(nameof(CreateFlashCard), model);
@@ -55,22 +57,24 @@ namespace FlashCards.Controllers
 
         //    newFlashCard = _flashCardData.AddCard(newFlashCard, newFlashCard.DeckId);
         //    return RedirectToAction(nameof(GetCards), new { deckId = newFlashCard.DeckId });
-        //}
+        }
 
-        //[HttpGet("{flashCardId}/Edit")]
-        //public IActionResult EditFlashCard(int flashCardId)
-        //{
+        [HttpGet("{flashCardId}/Edit")]
+        public IActionResult EditFlashCard(int flashCardId)
+        {
+            return View();
         //    FlashCardEditModel model = new FlashCardEditModel
         //    {
         //        FlashCard = _flashCardData.GetCard(flashCardId),
         //        Decks = _flashCardData.GetDecks()
         //    };
         //    return View(model);
-        //}
+        }
 
-        //[HttpPost("{flashCardId}/Edit")]
-        //public IActionResult EditFlashCard(FlashCardEditModel model)
-        //{
+        [HttpPost("{flashCardId}/Edit")]
+        public IActionResult EditFlashCard(FlashCardEditModel model)
+        {
+            return View();
         //    if (!ModelState.IsValid)
         //    {
         //        return RedirectToAction(nameof(EditFlashCard), model);
@@ -78,7 +82,7 @@ namespace FlashCards.Controllers
 
         //    _flashCardData.UpdateCard(model.FlashCard);
         //    return RedirectToAction(nameof(GetCards), new { deckId = model.FlashCard.DeckId });
-        //}
+        }
 
         //[HttpGet("{flashCardId}/Delete")]
         //public IActionResult DeleteFlashCard(int flashCardId)

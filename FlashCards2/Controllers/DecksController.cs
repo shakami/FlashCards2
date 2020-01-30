@@ -19,13 +19,13 @@ namespace FlashCards.Controllers
             */
         }
 
-        [HttpGet("CreateDeck")]
+        [HttpGet("New")]
         public IActionResult CreateDeck()
         {
             return View();
         }
 
-        [HttpPost("CreateDeck")]
+        [HttpPost("New")]
         public IActionResult CreateDeck(Deck model)
         {
             /*

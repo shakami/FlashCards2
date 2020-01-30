@@ -1,102 +1,18 @@
-﻿@*@model Deck*@
-@{
+﻿@{
     ViewData["Title"] = "FlashCards";
 }
 
+<script src="~/js/GetCardsScripts.js"></script>
 
-<script>
-    class Card {
-        constructor(id, deckId, title, description) {
-            this.id = id;
-            this.deckId = deckId;
-            this.title = title;
-            this.description = description;
-        }
-    }
-
-    function parseJsonToCard(data) {
-        let id = 0, deckId = 0, title = "", description = "";
-
-        $.each(data, function (key, val) {
-            switch (key) {
-                case 'id':
-                    id = val;
-                    break;
-                case 'deckId':
-                    deckId = val;
-                    break;
-                case 'title':
-                    title = val;
-                    break;
-                case 'description':
-                    description = val;
-                    break;
-                default:
-            }
-        });
-        var card = new Card(id, deckId, title, description);
-        return card;
-    }
-
-
-    $(document).ready(function () {
-        var deckId = window.location.pathname.match('[0-9]+')[0];
-
-        $.ajax({
-            accepts: {
-                json: 'application/json'
-            },
-            url: 'https://localhost:44123/api/decks/' + deckId + '/cards',
-            method: 'GET'
-        }).done(function (data) {
-            $.each(data, function (i, obj) {
-                var card = parseJsonToCard(obj);
-                var domCard = $(".card-deck > div:first-child").clone();
-                var cardTitle = domCard.find('.card-title');
-                cardTitle.text(card.title);
-                var cardDesc = domCard.find('h5');
-                cardDesc.text(card.description);
-                var cardDescId = 'description' + card.id;
-                cardDesc.attr('id', cardDescId);
-
-                var showBtn = domCard.find('.show-btn');
-                showBtn.on('change', function () {
-                    $('#'+cardDescId).removeClass('text-hide');
-                });
-
-                var hideBtn = domCard.find('.hide-btn');
-                hideBtn.on('change', function () {
-                    $('#'+cardDescId).addClass('text-hide');
-                });
-
-                domCard.appendTo(".card-deck");
-            });
-            $(".card-deck > div:first-child").remove();
-            $(".card-deck > div:first-child").appendTo(".card-deck");
-        });
-
-
-        
-
-    });
-</script>
-
-
-
-
-
-
-
-<h1 id="h1"></h1>
-@*<h1>@Model.Name</h1>*@
+<h1></h1>
 
 <br />
 
 <div>
-    <a class="btn btn-primary" asp-controller="Decks" asp-action="GetDecks">Back</a>
+    <a class="btn btn-primary" href="../../Decks">Back</a>
 
-    <button id="deleteButton" class="btn btn-danger">Delete Deck</button>
-    @*<a class="btn btn-success" asp-action="CreateFlashCard" asp-route-deckId="@Model.Id">New Card</a>*@
+    <a class="btn btn-danger delete-btn">Delete Deck</a>
+    <a class="btn btn-success new-btn">New Card</a>
 
     <br />
     <br />
@@ -114,11 +30,8 @@
 <div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="card-deck">
-            @*@foreach (var flashCard in Model.Cards)
-                {*@
             <div class="card text-white bg-dark mb-3" style="min-height: 18rem; min-width: 15rem; max-width: 15rem;">
                 <div class="card-header" style="height:3rem;">
-
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-secondary btn-sm show-btn">
                             <input type="radio" name="options" id="option1" autocomplete="off" />Show
@@ -127,31 +40,21 @@
                             <input type="radio" name="options" id="option2" autocomplete="off" checked />Hide
                         </label>
                     </div>
-                    @*<a asp-action="EditFlashCard"
-                           asp-route-deckId="@Model.Id"
-                           asp-route-flashCardId="@flashCard.Id"
-                           class="btn-sm btn-info float-right">
-                            Edit
-                        </a>*@
+                    <a class="btn-sm btn-info float-right edit-btn">Edit</a>
                 </div>
 
                 <div class="card-body">
                     <h3 class="card-title"></h3>
-                        <h5 @*id=@string.Concat("description",flashCard.Id)*@
-                            class="card-text, text-hide"></h5>
-                    @*<h3 class="card-title">@flashCard.Title</h3>
-                        <h5 id=@string.Concat("description",flashCard.Id)
-                            class="card-text, text-hide">
-                            @flashCard.Description
-                        </h5>*@
+                    <h5 class="card-text"></h5>
+                    @*<h5 class="card-text, text-hide"></h5>*@
                 </div>
             </div>
-            @*}*@
+
             <div class="card text-white bg-secondary mb-3" style="min-height: 18rem; min-width: 15rem; max-width: 15rem;">
                 <div class="card-header" style="height:3rem;"></div>
                 <div class="card-body">
                     <h3 class="card-title">
-                        @* <a class="btn btn-success" asp-action="CreateFlashCard" asp-route-deckId="@Model.Id">New Card</a>*@
+                        <a class="btn btn-success new-btn">New Card</a>
                     </h3>
                 </div>
             </div>

@@ -2,66 +2,7 @@
     ViewData["Title"] = "Decks";
 }
 
-<script>
-    class Deck {
-        constructor(id, name) {
-            this.id = id;
-            this.name = name;
-        }
-    }
-
-    function parseJsonToDeck(data) {
-        let id = 0;
-        let name = "";
-
-        $.each(data, function (key, val) {
-            if (key === "id") {
-                id = val;
-            }
-            else if (key === "name") {
-                name = val;
-            }
-        });
-
-        var deck = new Deck(id, name);
-        return deck;
-    }
-
-
-    $(document).ready(function () {
-        $.ajax({
-            accepts: {
-                json: 'application/json'
-            },
-            url: 'https://localhost:44123/api/decks',
-            method: 'GET'
-        }).done(function (data) {
-            $.each(data, function (i, obj) {
-                var deck = parseJsonToDeck(obj);
-                var card = $(".card-deck > div:first-child").clone();
-                var linkOnCard = card.find("a");
-                linkOnCard.text(deck.name);
-                linkOnCard.attr("href", "Decks/" + deck.id + "/Cards");
-                card.appendTo(".card-deck");
-            });
-            $(".card-deck > div:first-child").remove();
-            $(".card-deck > div:first-child").appendTo(".card-deck");
-        });
-            
-        //$.getJSON('https://localhost:44123/api/decks', function (data) {
-        //    $.each(data, function (i, obj) {
-        //        var deck = parseJsonToDeck(obj);
-        //        var card = $(".card-deck > div:first-child").clone();
-        //        var linkOnCard = card.find("a");
-        //        linkOnCard.text(deck.name);
-        //        linkOnCard.attr("href", "Decks/" + deck.id + "/Cards");
-        //        card.appendTo(".card-deck");
-        //    });
-        //    $(".card-deck > div:first-child").remove();
-        //    $(".card-deck > div:first-child").appendTo(".card-deck");
-        //});
-    });
-</script>
+<script src="~/js/GetDecksScripts.js"></script>
 
 <h1>Decks</h1>
 <br />
