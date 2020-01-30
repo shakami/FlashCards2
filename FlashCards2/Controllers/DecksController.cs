@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FlashCards.Entities;
-using FlashCards.Repository;
+using FlashCards.Api.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlashCards.Controllers
@@ -11,7 +10,7 @@ namespace FlashCards.Controllers
     [Route("Decks")]
     public class DecksController : Controller
     {
-        [HttpGet(Name = "GetDecks")]
+        [HttpGet(Name = "App.GetDecks")]
         public IActionResult GetDecks()
         {
             return View();

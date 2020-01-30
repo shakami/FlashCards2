@@ -29,7 +29,13 @@
 
 
     $(document).ready(function () {
-        $.getJSON('https://localhost:44123/api/decks', function (data) {
+        $.ajax({
+            accepts: {
+                json: 'application/json'
+            },
+            url: 'https://localhost:44123/api/decks',
+            method: 'GET'
+        }).done(function (data) {
             $.each(data, function (i, obj) {
                 var deck = parseJsonToDeck(obj);
                 var card = $(".card-deck > div:first-child").clone();
@@ -41,6 +47,19 @@
             $(".card-deck > div:first-child").remove();
             $(".card-deck > div:first-child").appendTo(".card-deck");
         });
+            
+        //$.getJSON('https://localhost:44123/api/decks', function (data) {
+        //    $.each(data, function (i, obj) {
+        //        var deck = parseJsonToDeck(obj);
+        //        var card = $(".card-deck > div:first-child").clone();
+        //        var linkOnCard = card.find("a");
+        //        linkOnCard.text(deck.name);
+        //        linkOnCard.attr("href", "Decks/" + deck.id + "/Cards");
+        //        card.appendTo(".card-deck");
+        //    });
+        //    $(".card-deck > div:first-child").remove();
+        //    $(".card-deck > div:first-child").appendTo(".card-deck");
+        //});
     });
 </script>
 

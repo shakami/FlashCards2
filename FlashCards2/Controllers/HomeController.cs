@@ -20,7 +20,7 @@ namespace FlashCards.Controllers
 
         public IActionResult Index()
         {
-            return RedirectToRoute("GetDecks");
+            return RedirectToRoute("App.GetDecks");
         }
 
         public IActionResult Privacy()

@@ -1,4 +1,4 @@
-﻿using FlashCards.Repository;
+﻿using FlashCards.Api.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,17 +9,17 @@ namespace FlashCards.ViewComponents
 {
     public class NavbarDeckListViewComponent : ViewComponent
     {
-        private readonly IFlashCardRepository _flashCardDataService;
+        //private readonly IFlashCardRepository _flashCardDataService;
 
-        public NavbarDeckListViewComponent(IFlashCardRepository flashCardDataService)
-        {
-            _flashCardDataService = flashCardDataService;
-        }
+        //public NavbarDeckListViewComponent(IFlashCardRepository flashCardDataService)
+        //{
+        //    _flashCardDataService = flashCardDataService;
+        //}
 
-        public IViewComponentResult Invoke()
-        {
-            var model = _flashCardDataService.GetDecks();
-            return View(model);
-        }
+        //public IViewComponentResult Invoke()
+        //{
+        //    var model = _flashCardDataService.GetDecks();
+        //    return View(model);
+        //}
     }
 }
