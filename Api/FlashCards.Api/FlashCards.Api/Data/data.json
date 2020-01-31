@@ -103,18 +103,6 @@
       ],
       "Id": 8,
       "Name": "chemistry"
-    },
-    {
-      "Cards": [
-        {
-          "DeckId": 49,
-          "Id": 31,
-          "Title": "test card",
-          "Description": "123"
-        }
-      ],
-      "Id": 49,
-      "Name": "tests"
     }
   ]
 }

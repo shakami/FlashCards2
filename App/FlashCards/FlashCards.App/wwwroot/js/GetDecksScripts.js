@@ -20,5 +20,5 @@
         });
         $(".card-deck > div:first-child").remove();
         $(".card-deck > div:first-child").appendTo(".card-deck");
-    });
+    }).fail(ShowGenericError);
 });
