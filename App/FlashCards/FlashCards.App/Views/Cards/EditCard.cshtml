@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Edit Flash Card";
+}
+
+<script src="~/js/EditCardScripts.js"></script>
+<script src="~/js/Validation.js"></script>
+<script src="~/js/VerifyDelete.js"></script>
+
+<h1>Edit Flash Card</h1>
+
+<form method="post" class="form-group">
+    <div>
+        <label class="form-check-label">Deck</label>
+        <input id="deck-name" class="form-control" />
+    </div>
+    <br />
+
+    <div>
+        <label class="form-check-label">Title</label>
+        <input id="card-title" placeholder="Flash Card Title" class="form-control" />
+    </div>
+    <br />
+
+    <div>
+        <label class="form-check-label">Description</label>
+        <textarea id="card-description" placeholder="Write your description here"
+                  class="form-control"></textarea>
+        <ul id="validation-error" class="text-danger"></ul>
+    </div>
+    <br />
+</form>
+
+<div id="toolbar">
+    <input type="submit" name="save" value="Save" class="btn btn-primary col-1" />
+
+    <button id="delete-btn" type="button" class="btn btn-danger col-1">Delete</button>
+    <button id="cancel-btn" class="btn btn-secondary col-1">Cancel</button>
+
+    <br />
+    <br />
+</div>

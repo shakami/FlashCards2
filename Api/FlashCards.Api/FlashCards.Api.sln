@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlashCards.Api", "FlashCards.Api\FlashCards.Api.csproj", "{BC1615C6-4347-415A-A6A5-22ABB1023761}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC1615C6-4347-415A-A6A5-22ABB1023761}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1615C6-4347-415A-A6A5-22ABB1023761}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC1615C6-4347-415A-A6A5-22ABB1023761}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC1615C6-4347-415A-A6A5-22ABB1023761}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3267D752-FC4B-4F5C-8CBC-2517A3F73986}
+	EndGlobalSection
+EndGlobal

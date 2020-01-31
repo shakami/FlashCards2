@@ -3,3 +3,9 @@
 ################################################################################
 
 /.vs/FlashCards2
+/Api/FlashCards.Api/.vs/FlashCards.Api
+/Api/FlashCards.Api/FlashCards.Api/bin/Debug/netcoreapp3.1
+/Api/FlashCards.Api/FlashCards.Api/obj
+/Api/FlashCards.Api/FlashCards.Api/WeatherForecast.cs
+/App/FlashCards/.vs/FlashCards
+/App/FlashCards/FlashCards.App/obj
