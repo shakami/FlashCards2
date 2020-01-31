@@ -46,12 +46,6 @@ function PerformDelete() {
     path = path.substring(0, i);
     var redirectUrl = window.location.origin + path;
 
-    $.ajax({
-        headers: {
-            Accept: "application/json",
-        },
-        url: deleteUrl,
-        method: 'DELETE',
-    })
+    ApiCall.Delete(deleteUrl)
         .done(() => window.location.replace(redirectUrl));
 }

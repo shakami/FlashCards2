@@ -1,6 +1,6 @@
 {
-  "_deckId": 53,
-  "_cardId": 34,
+  "_deckId": 58,
+  "_cardId": 38,
   "Decks": [
     {
       "Cards": [
@@ -103,18 +103,6 @@
       ],
       "Id": 8,
       "Name": "chemistry"
-    },
-    {
-      "Cards": [
-        {
-          "DeckId": 52,
-          "Id": 33,
-          "Title": "test card",
-          "Description": "sd"
-        }
-      ],
-      "Id": 52,
-      "Name": "test deck"
     }
   ]
 }
