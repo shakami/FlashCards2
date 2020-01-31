@@ -18,10 +18,7 @@
         method: 'GET'
     }).done(function (data) {
         var deck = ParseJsonToDeck(data);
-        $('#deck-name').attr({
-            value: deck.Name,
-            disabled: true
-        });
+        $('#deck-name').attr('value', deck.Name);
     });
 
     $.ajax({

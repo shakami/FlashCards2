@@ -2,9 +2,6 @@
     ViewData["Title"] = "FlashCards";
 }
 
-<script src="~/js/GetCardsScripts.js"></script>
-<script src="~/js/VerifyDelete.js"></script>
-
 <h1></h1>
 
 <br />
@@ -24,14 +21,17 @@
 <div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="card-deck">
-            <div class="card text-white bg-dark mb-3" style="min-height: 18rem; min-width: 15rem; max-width: 15rem;">
-                <div class="card-header" style="height:3rem;">
+            <div class="card text-white bg-dark mb-3"
+                 style="min-height: 18rem; min-width: 15rem; max-width: 15rem;">
+                <div class="card-header" style="height: 3rem;">
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-secondary btn-sm show-btn">
-                            <input type="radio" name="options" id="option1" autocomplete="off" />Show
+                            <input type="radio" name="options"
+                                   id="option1" autocomplete="off" />Show
                         </label>
                         <label class="btn btn-secondary btn-sm active hide-btn">
-                            <input type="radio" name="options" id="option2" autocomplete="off" checked />Hide
+                            <input type="radio" name="options"
+                                   id="option2" autocomplete="off" checked />Hide
                         </label>
                     </div>
                     <a class="btn-sm btn-info float-right edit-btn">Edit</a>
@@ -40,12 +40,12 @@
                 <div class="card-body">
                     <h3 class="card-title"></h3>
                     <h5 class="card-text"></h5>
-                    @*<h5 class="card-text, text-hide"></h5>*@
                 </div>
             </div>
 
-            <div class="card text-white bg-secondary mb-3" style="min-height: 18rem; min-width: 15rem; max-width: 15rem;">
-                <div class="card-header" style="height:3rem;"></div>
+            <div class="card text-white bg-secondary mb-3"
+                 style="min-height: 18rem; min-width: 15rem; max-width: 15rem;">
+                <div class="card-header" style="height: 3rem;"></div>
                 <div class="card-body">
                     <h3 class="card-title">
                         <a class="btn btn-success new-btn">New Card</a>
@@ -55,3 +55,11 @@
         </div>
     </div>
 </div>
+
+<div id="validation-error" class="alert alert-warning" role="alert" hidden></div>
+
+@section Scripts {
+    <script src="~/js/GetCardsScripts.js"></script>
+    <script src="~/js/VerifyDelete.js"></script>
+    <script src="~/js/Validation.js"></script>
+}

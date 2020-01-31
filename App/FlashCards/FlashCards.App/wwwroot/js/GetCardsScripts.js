@@ -14,7 +14,8 @@
     }).done(function (data) {
         var deck = ParseJsonToDeck(data);
         $('h1').text(deck.Name);
-    });
+    })
+        .fail(ShowGenericError);
 
 
     $.ajax({
@@ -55,5 +56,6 @@
         });
         $(".card-deck > div:first-child").remove();
         $(".card-deck > div:first-child").appendTo(".card-deck");
-    });
+    })
+        .fail(ShowGenericError);
 });

@@ -2,15 +2,12 @@
     ViewData["Title"] = "Create Flash Card";
 }
 
-<script src="~/js/CreateCardScripts.js"></script>
-<script src="~/js/Validation.js"></script>
-
-<h1>Create A New Flash Card</h1>
+<h1>Create a New Flash Card</h1>
 
 <form method="post" class="form-group">
     <div>
         <label class="form-check-label">Deck</label>
-        <input id="deck-name" class="form-control" />
+        <input id="deck-name" type="text" class="form-control" readonly />
     </div>
     <br />
 
@@ -24,13 +21,18 @@
         <label class="form-check-label">Description</label>
         <textarea id="card-description" placeholder="Write your description here"
                   class="form-control"></textarea>
-        <ul id="validation-error" class="text-danger"></ul>
     </div>
     <br />
 
+    <div id="validation-error" class="alert alert-warning" role="alert" hidden></div>
+
     <div>
         <input type="submit" name="save" value="Save" class="btn btn-primary col-1" />
-        <button id="cancel-btn" class="btn btn-secondary col-1" >Cancel</button>
+        <button id="cancel-btn" class="btn btn-secondary col-1">Cancel</button>
     </div>
 </form>
 
+@section Scripts {
+    <script src="~/js/CreateCardScripts.js"></script>
+    <script src="~/js/Validation.js"></script>
+}

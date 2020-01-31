@@ -1,20 +1,4 @@
-﻿class Card {
-    constructor(id, deckId, title, description) {
-        this.Id = id;
-        this.DeckId = deckId;
-        this.Title = title;
-        this.Description = description;
-    }
-}
-
-class Deck {
-    constructor(id, name) {
-        this.Id = id;
-        this.Name = name;
-    }
-}
-
-function ParseJsonToCard(data) {
+﻿function ParseJsonToCard(data) {
     let id = 0, deckId = 0, title = "", description = "";
 
     $.each(data, function (key, val) {

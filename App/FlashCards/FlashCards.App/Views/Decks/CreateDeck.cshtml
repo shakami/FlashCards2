@@ -2,20 +2,26 @@
     ViewData["Title"] = "Create Deck";
 }
 
-<script src="~/js/CreateDeckScripts.js"></script>
-<script src="~/js/Validation.js"></script>
-
-<h1>Create A New Deck</h1>
+<h1>Create a New Deck</h1>
 
 <div>
     <form class="form-group">
         <div>
             <label class="col-form-label">Name</label>
             <input id="deckName" placeholder="Deck Name" class="form-control" />
-            <ul id="validation-error" class="text-danger"></ul>
         </div>
 
+        <br />
+        <div id="validation-error" class="alert alert-warning" role="alert" hidden></div>
+
         <input type="submit" name="save" value="save" class="btn btn-primary col-1" />
-        <a asp-action="GetDecks" asp-controller="Decks" class="btn btn-secondary col-1">Cancel</a>
+        <a class="btn btn-secondary col-1" asp-action="GetDecks" asp-controller="Decks">
+            Cancel
+        </a>
     </form>
 </div>
+
+@section Scripts {
+    <script src="~/js/CreateDeckScripts.js"></script>
+    <script src="~/js/Validation.js"></script>
+}

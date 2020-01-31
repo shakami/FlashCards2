@@ -2,16 +2,12 @@
     ViewData["Title"] = "Edit Flash Card";
 }
 
-<script src="~/js/EditCardScripts.js"></script>
-<script src="~/js/Validation.js"></script>
-<script src="~/js/VerifyDelete.js"></script>
-
 <h1>Edit Flash Card</h1>
 
 <form method="post" class="form-group">
     <div>
         <label class="form-check-label">Deck</label>
-        <input id="deck-name" class="form-control" />
+        <input id="deck-name" type="text" class="form-control" readonly />
     </div>
     <br />
 
@@ -25,9 +21,10 @@
         <label class="form-check-label">Description</label>
         <textarea id="card-description" placeholder="Write your description here"
                   class="form-control"></textarea>
-        <ul id="validation-error" class="text-danger"></ul>
     </div>
     <br />
+
+    <div id="validation-error" class="alert alert-warning" role="alert" hidden></div>
 </form>
 
 <div id="toolbar">
@@ -39,3 +36,9 @@
     <br />
     <br />
 </div>
+
+@section Scripts {
+    <script src="~/js/EditCardScripts.js"></script>
+    <script src="~/js/Validation.js"></script>
+    <script src="~/js/VerifyDelete.js"></script>
+}
