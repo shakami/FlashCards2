@@ -15,4 +15,5 @@ function PopulateDecksInDOM(data) {
     });
     $(".card-deck > div:first-child").remove();
     $(".card-deck > div:first-child").appendTo(".card-deck");
+    $('.card-deck').removeAttr('hidden');
 }

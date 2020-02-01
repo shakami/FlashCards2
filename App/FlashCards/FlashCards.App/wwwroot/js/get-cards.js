@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-
     $('.new-btn').attr('href', 'Cards/New');
     $('#edit-deck-btn').attr('href', 'Edit');
 
@@ -43,4 +42,5 @@ function PopulateCardsInDOM(data) {
     });
     $(".card-deck > div:first-child").remove();
     $(".card-deck > div:first-child").appendTo(".card-deck");
+    $('.card-deck').removeAttr('hidden');
 }

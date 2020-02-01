@@ -21,9 +21,11 @@ class ErrorHandler {
     }
 
     static ShowGenericError() {
+        $('#nav-buttons').replaceWith($('#validation-error'));
         ClearErrors();
         ShowError('An unexpected error happened while ' +
             'communicating with the server. Please try again later');
+        
     }
 }
 
