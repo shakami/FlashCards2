@@ -1,0 +1,844 @@
+{
+	"info": {
+		"_postman_id": "3a5a0970-3b5e-4778-96ae-d3b706109857",
+		"name": "FlashCards",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Decks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Decks (hateoas)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.sepehr.hateoas+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Deck",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Deck (hateoas)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.sepehr.hateoas+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Deck (none existing)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Deck",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"test\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44789/api/decks",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Deck (empty field)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": null\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44789/api/decks",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Deck with Cards",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"test deck\",\n\t\"cards\": [\n\t\t{\n\t\t\t\"title\": \"test card\",\n\t\t\t\"description\": \"test desc\"\n\t\t},\n\t\t{\n\t\t\t\"title\": \"test card2\",\n\t\t\t\"description\": \"test desc2\"\n\t\t}\n\t\t]\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44789/api/decks",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Deck",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"new name\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44789/api/decks/15",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Deck",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/15",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Options for Decks",
+			"request": {
+				"method": "OPTIONS",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Options for one Deck",
+			"request": {
+				"method": "OPTIONS",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cards in Deck #8",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/8/cards",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"8",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cards in Deck (hateoas)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.sepehr.hateoas+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/8/cards",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"8",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cards in Deck (nonexisting deck)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/1/cards",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"1",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Card",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/8/cards/18",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"8",
+						"cards",
+						"18"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Card (hateoas)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.sepehr.hateoas+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/8/cards/18",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"8",
+						"cards",
+						"18"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Card (xml)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/8/cards/18",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"8",
+						"cards",
+						"18"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Card (nonexisting deck)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/1/cards/18",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"1",
+						"cards",
+						"18"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Card (nonexisting card)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/8/cards/15",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"8",
+						"cards",
+						"15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Head",
+			"request": {
+				"method": "HEAD",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Card",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"test card\",\n\t\"description\": \"test desc\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44789/api/decks/5/cards",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"5",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Card (empry fields)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": null,\n\t\"description\": null\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44789/api/decks/5/cards",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"5",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Options for Cards",
+			"request": {
+				"method": "OPTIONS",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/5/cards",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"5",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Options for one Card",
+			"request": {
+				"method": "OPTIONS",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/5/cards/10",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"5",
+						"cards",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Card",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"updated - molar volume\",\r\n    \"description\": \"updated - the amount of space a mole of a substance takes up.\"\r\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44789/api/decks/8/cards/18",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"8",
+						"cards",
+						"18"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Card",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44789/api/decks/5/cards/27",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api",
+						"decks",
+						"5",
+						"cards",
+						"27"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Root",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44789/api",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44789",
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
