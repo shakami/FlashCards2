@@ -1,11 +1,11 @@
 ﻿$(document).ready(function () {
+    var deckId = GetDeckIdFromUrl();
+    var cardId = GetCardIdFromUrl();
+
     $('#cancel-btn').on('click', function () {
         event.preventDefault();
         GoBackToDeck(deckId);
     });
-
-    var deckId = GetDeckIdFromUrl();
-    var cardId = GetCardIdFromUrl();
 
     $('input[type=submit]').on('click', () => SubmitForm(deckId, cardId));
 

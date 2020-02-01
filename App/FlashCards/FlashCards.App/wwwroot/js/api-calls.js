@@ -35,6 +35,20 @@ class ApiCall {
         }).fail(ErrorHandler.ShowGenericError);
     }
 
+    static UpdateDeck(deckId, data) {
+        return $.ajax({
+            headers: {
+                "Content-Type": "application/json"
+            },
+            url: API_URL + '/' + deckId,
+            method: 'PUT',
+            data: data,
+            statusCode: {
+                422: jqXHR => ErrorHandler.ShowValidationError(jqXHR)
+            }
+        }).fail(ErrorHandler.ShowGenericError);
+    }
+
     static GetCardsInDeck(deckId) {
         return $.ajax({
             url: API_URL + '/' + deckId + '/cards',

@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
 
     $('.new-btn').attr('href', 'Cards/New');
+    $('#edit-deck-btn').attr('href', 'Edit');
 
     var deckId = GetDeckIdFromUrl();
 

@@ -13,9 +13,6 @@ namespace FlashCards.Controllers
         public IActionResult GetDecks()
         {
             return View();
-            /*var model = _flashCardData.GetDecks().ToList();
-            return View(model);
-            */
         }
 
         [HttpGet("New")]
@@ -24,30 +21,10 @@ namespace FlashCards.Controllers
             return View();
         }
 
-        //[HttpPost("New")]
-        //public IActionResult CreateDeck(Deck model)
-        //{
-        //    /*
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return RedirectToAction(nameof(CreateDeck), model);
-        //    }
-        //    _flashCardData.AddDeck(model);
-
-        //    return RedirectToAction(nameof(GetDecks));
-        //    */
-        //    return null;
-        //}
-
-        [HttpGet("{deckId}/Delete")]
-        public IActionResult DeleteDeck(int deckId)
+        [HttpGet("{deckId}/Edit")]
+        public IActionResult EditDeck()
         {
-            /*
-            var deckToRemove = _flashCardData.GetDeck(deckId);
-            _flashCardData.DeleteDeck(deckToRemove);
-            return RedirectToAction(nameof(GetDecks));
-            */
-            return null;
+            return View();
         }
     }
 }
