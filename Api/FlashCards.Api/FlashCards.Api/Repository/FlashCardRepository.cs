@@ -9,7 +9,15 @@ namespace FlashCards.Api.Repository
 {
     public class FlashCardRepository : IFlashCardRepository
     {
-        private readonly JsonDataContext _context = new JsonDataContext();
+        private readonly JsonDataContext _context;
+
+        public FlashCardRepository() : this("./Data/data.json")
+        { }
+
+        public FlashCardRepository(string dataPath)
+        {
+            _context = new JsonDataContext(dataPath);
+        }
 
         public Deck AddDeck(Deck newDeck)
         {

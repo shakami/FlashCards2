@@ -11,3 +11,5 @@
 /App/FlashCards/FlashCards.App/obj
 /App/FlashCards/FlashCards.App/bin/Debug/netcoreapp3.1
 /.vs
+/Api/FlashCards.Api/FlashCards.Api.Tests/bin/Debug/netcoreapp3.1
+/Api/FlashCards.Api/FlashCards.Api.Tests/obj

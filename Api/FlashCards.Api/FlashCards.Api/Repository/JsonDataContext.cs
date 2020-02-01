@@ -21,9 +21,6 @@ namespace FlashCards.Api.Repository
             }
         }
 
-        public JsonDataContext() : this("./Data/data.json")
-        { }
-
         public JsonDataContext(string dataPath)
         {
             _dataPath = dataPath;
