@@ -12,6 +12,7 @@ namespace FlashCards.Api.Profiles
         {
             CreateMap<Entities.Deck, Models.DeckDto>();
             CreateMap<Models.DeckForCreationDto, Entities.Deck>();
+            CreateMap<Models.DeckForUpdateDto, Entities.Deck>();
         }
     }
 }

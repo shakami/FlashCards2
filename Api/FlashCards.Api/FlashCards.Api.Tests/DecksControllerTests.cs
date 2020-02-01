@@ -150,5 +150,33 @@ namespace FlashCards.Api.Tests
             //-- Act
             _decks.DeleteDeck(newDeckId);
         }
+
+        [TestMethod]
+        public void UpdateDeck()
+        {
+            //-- Arrange
+            var deckId = 5;
+            var oldDeck = _flashCardRepository.GetDeck(deckId);
+            var oldName = oldDeck.Name;
+
+            var updatedDeck = new DeckForUpdateDto
+            {
+                Name = "updated - " + oldName
+            };
+
+            //-- Act
+            var response = _decks.UpdateDeck(deckId, updatedDeck);
+
+            var deckAfterUpdate = _flashCardRepository.GetDeck(deckId);
+
+            //-- Assert
+            Assert.IsNotNull(response as NoContentResult);
+            Assert.AreEqual(deckAfterUpdate.Name, updatedDeck.Name);
+
+            // cleanup
+            oldDeck.Name = oldName;
+            _flashCardRepository.UpdateDeck(oldDeck);
+            _flashCardRepository.Save();
+        }
     }
 }

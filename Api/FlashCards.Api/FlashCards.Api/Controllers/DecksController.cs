@@ -37,7 +37,7 @@ namespace FlashCards.Api.Controllers
         [HttpOptions("{deckId}")]
         public IActionResult GetDeckOptions()
         {
-            Response.Headers.Add("Allow", "GET,OPTIONS,HEAD,DELETE");
+            Response.Headers.Add("Allow", "GET,OPTIONS,HEAD,PUT,DELETE");
             return Ok();
         }
 
@@ -144,6 +144,24 @@ namespace FlashCards.Api.Controllers
                                     deckWithLinks);
         }
 
+        [HttpPut("{deckId}", Name = nameof(UpdateDeck))]
+        public ActionResult UpdateDeck(int deckId, DeckForUpdateDto deck)
+        {
+            var deckFromRepo = _flashCardRepository.GetDeck(deckId);
+
+            if (deckFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(deck, deckFromRepo);
+
+            _flashCardRepository.UpdateDeck(deckFromRepo);
+            _flashCardRepository.Save();
+
+            return NoContent();
+        }
+
         [HttpDelete("{deckId}", Name = nameof(DeleteDeck))]
         public IActionResult DeleteDeck(int deckId)
         {
@@ -169,6 +187,13 @@ namespace FlashCards.Api.Controllers
                     href: Url.Link(nameof(GetDeck), new { deckId }),
                     rel: "self",
                     method: HttpMethods.Get
+                ),
+
+                new LinkDto
+                (
+                    href: Url.Link(nameof(UpdateDeck), new { deckId }),
+                    rel: "update_deck",
+                    method: HttpMethods.Put
                 ),
 
                 new LinkDto

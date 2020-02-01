@@ -46,6 +46,12 @@ namespace FlashCards.Api.Repository
             return _context.Decks.FirstOrDefault(d => d.Id == deckId);
         }
 
+        public Deck UpdateDeck(Deck updatedDeck)
+        {
+            // no code needed
+            return updatedDeck;
+        }
+
         public void DeleteDeck(Deck deck)
         {
             if (deck is null)

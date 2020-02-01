@@ -8,6 +8,7 @@ namespace FlashCards.Api.Repository
         Deck AddDeck(Deck newDeck);
         IEnumerable<Deck> GetDecks();
         Deck GetDeck(int deckId);
+        Deck UpdateDeck(Deck updatedDeck);
         void DeleteDeck(Deck deck);
 
         Card AddCard(Card newCard, int deckId);
